@@ -1,0 +1,177 @@
+<div class="box" style="margin-top: 30px;" *ngIf="nome_sistema">
+    <div class="box-header with-border">
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                title="Collapse">
+                <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fa fa-times"></i></button>
+        </div>
+        <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right">
+                <li><a href="#notes" data-toggle="tab">NOTES</a></li>
+                <li><a href="#crq" data-toggle="tab">CRQ</a></li>
+                <li class="active"><a href="#req" data-toggle="tab">REQ</a></li>
+
+                <li class="pull-left header"><i class="fa fa-inbox"></i> {{nome_sistema}}</li>
+            </ul>
+            <div class="tab-content no-padding">
+                <!-- Morris chart - Sales -->
+                <div class="chart tab-pane active" id="req">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Add Task</h3>
+
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <form novalidate [formGroup]="formulario" (submit)="addTask()">
+                                    <input type="hidden" class="form-control" formControlName="id_cat" value=1>
+                                    <div class="col-xs-4">
+                                        <input type="text" formControlName="nome" class="form-control"
+                                            placeholder="Requisição">
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <input type="text" formControlName="descricao" class="form-control"
+                                            placeholder="Descrição">
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <div class="btn-group">
+                                            <button type="submit" class="btn btn-success" [disabled]="!formulario.valid"
+                                                (click)="formulario.get('id_cat').setValue(1)"><i
+                                                    class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <div class="box-body">
+                        <ul class="todo-list" *ngFor="let tarefa of tarefas">
+                            <li *ngIf="tarefa.id_cat === 1" style="margin-bottom: 3px; ">
+                                <div>
+                                    <!-- drag handle -->
+                                    <span class="handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <!-- todo text -->
+                                    <span class="text">{{tarefa.nome}} - {{tarefa.descricao}}</span>
+                                    <!-- General tools such as edit or delete-->
+                                    <div class="tools">
+                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="chart tab-pane" id="crq">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Add Task</h3>
+
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <form novalidate [formGroup]="formulario" (submit)="addTask()">
+                                    <div class="col-xs-4">
+                                        <input type="text" formControlName="nome" class="form-control"
+                                            placeholder="CRQ da Mudança">
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <input type="text" formControlName="descricao" class="form-control"
+                                            placeholder="Descrição">
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <div class="btn-group">
+                                            <button type="submit" class="btn btn-success" [disabled]="!formulario.valid"
+                                                (click)="formulario.get('id_cat').setValue(2)"><i
+                                                    class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <div class="box-body">
+                        <ul class="todo-list" *ngFor="let tarefa of tarefas">
+                            <li *ngIf="tarefa.id_cat === 2" style="margin-bottom: 3px; ">
+                                <div>
+                                    <!-- drag handle -->
+                                    <span class="handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <!-- todo text -->
+                                    <span class="text">{{tarefa.nome}} - {{tarefa.descricao}}</span>
+                                    <!-- General tools such as edit or delete-->
+                                    <div class="tools">
+                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="chart tab-pane" id="notes">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Add Task</h3>
+
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <form novalidate [formGroup]="formulario" (submit)="addTask()">
+                                    <div class="col-xs-4">
+                                        <input type="text" formControlName="nome" class="form-control"
+                                            placeholder="Nota">
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <input type="text" formControlName="descricao" class="form-control"
+                                            placeholder="Descrição">
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <div class="btn-group">
+                                            <button type="submit" class="btn btn-success" [disabled]="!formulario.valid"
+                                                (click)="formulario.get('id_cat').setValue(3)"><i
+                                                    class="fa fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <div class="box-body">
+                        <ul class="todo-list" *ngFor="let tarefa of tarefas">
+                            <li *ngIf="tarefa.id_cat === 3" style="margin-bottom: 3px; ">
+                                <div>
+                                    <!-- drag handle -->
+                                    <span class="handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <!-- todo text -->
+                                    <span class="text">{{tarefa.nome}} - {{tarefa.descricao}}</span>
+                                    <!-- General tools such as edit or delete-->
+                                    <div class="tools">
+                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-trash-o"></i>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

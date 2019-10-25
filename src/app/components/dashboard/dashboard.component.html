@@ -1,0 +1,44 @@
+<div class="row" style="margin: 0 auto; width: 50%">
+    <div class="">
+        <div class="input-group" style="margin-bottom: 20px;">
+            <input #termodapesquisa (keyup)="pesquisa(termodapesquisa.value)" type="text" class="form-control">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        </div>
+    </div>
+</div>
+
+<button type="button" class="btn bg-orange margin" *ngFor="let sistema of sistemas" (click)=setIdSistema(sistema.id)>
+    {{sistema.nome}}
+</button>
+<app-tarefa [id_sistema]="idSistema" [ngClass]="{'displayNone': !display}"></app-tarefa>
+
+<section class="content" [ngClass]="{'displayNone': display}">
+    <div class="row" >
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Tarefas</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding" style="overflow:auto; max-height:500px;">
+                    <table class="table table-striped" >
+                            <thead>
+                              <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Data</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let tarefa of tarefasPesquisa | async">
+                                <td>{{tarefa.nome}}</td>
+                                <td>{{tarefa.descricao}}</td>
+                                <td>{{tarefa.created_at | date: 'dd/MM/yyyy'}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+
+</section>
