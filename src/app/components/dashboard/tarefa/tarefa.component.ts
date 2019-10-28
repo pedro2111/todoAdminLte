@@ -3,6 +3,7 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 import { Tarefa } from 'src/app/shared/tarefa.model';
 import { Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NotifierService } from "angular-notifier";
 
 @Component({
   selector: 'app-tarefa',
@@ -13,6 +14,7 @@ export class TarefaComponent implements OnInit, OnChanges {
 
   @Input() id_sistema: number;
   tarefas: Tarefa[] = [];
+  Alltarefas: Tarefa[] = [];
   nome_sistema: string = '';
 
   formulario: FormGroup = new FormGroup({
@@ -22,9 +24,10 @@ export class TarefaComponent implements OnInit, OnChanges {
   });
 
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService, private notifierService: NotifierService) { }
 
   ngOnInit() {
+    this.getAllTarefas();    
 
   }
   ngOnChanges() {
@@ -46,6 +49,12 @@ export class TarefaComponent implements OnInit, OnChanges {
         this.tarefas = res;
       })
   }
+  getAllTarefas(){
+    this.dashboardService.getTarefas()
+    .subscribe((res) => {
+      this.Alltarefas = res;
+    })
+  }
   addTask() {
     let tarefa = new Tarefa;
 
@@ -58,8 +67,28 @@ export class TarefaComponent implements OnInit, OnChanges {
     this.dashboardService.postTarefa(tarefa)
       .subscribe(() => {
         this.formulario.reset();
-        this.getTarefasBySistema(this.id_sistema)
+        this.getTarefasBySistema(this.id_sistema);
+        this.getAllTarefas();
+        this.notifierService.notify("success", "Tarefa adicionada com sucesso");
       })
+  }
+  deleteTask(id) {
+    this.dashboardService.deleteTarefa(id)
+      .subscribe(() => {
+        this.getTarefasBySistema(this.id_sistema)
+        this.getAllTarefas();
+        this.notifierService.notify("success", "Tarefa deletada com sucesso");
+
+      });
+  }
+  finalizaTask(id) {
+    this.dashboardService.finalizaTarefa(id)
+      .subscribe(() => {
+        this.getTarefasBySistema(this.id_sistema);
+        this.getAllTarefas();
+        this.notifierService.notify("success", "Tarefa finalizada com sucesso");
+
+      });
   }
 
 }

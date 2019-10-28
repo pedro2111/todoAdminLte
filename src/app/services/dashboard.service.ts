@@ -36,4 +36,10 @@ export class DashboardService {
     }
     return this.http.post(`${URL_API}/tarefas`, tarefa, httpOptions)
   }
+  deleteTarefa(id){
+    return this.http.delete(`${URL_API}/tarefas/${id}`)
+  }
+  finalizaTarefa(id){
+    return this.http.get(`${URL_API}/finalizartarefas/${id}`)
+  }
 }
