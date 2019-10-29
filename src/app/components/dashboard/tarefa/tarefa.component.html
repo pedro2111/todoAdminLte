@@ -184,7 +184,11 @@
         <h3 class="box-title">Tarefas</h3>
 
         <div class="box-tools">
-            <pagination-controls class="pagination pagination-sm no-margin pull-right" (pageChange)="p = $event">
+            <pagination-controls class="pagination pagination-sm no-margin pull-right"
+             (pageChange)="p = $event"
+             previousLabel="Anterior"
+             nextLabel="Próximo"
+             >
             </pagination-controls>
         </div>
     </div>

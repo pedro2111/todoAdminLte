@@ -14,6 +14,17 @@ export class DashboardService {
   getSistemas(){
     return this.http.get<Sistema[]>(`${URL_API}/sistemas`);
   }
+  postSistemas(sistema:Sistema){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers.append('Content-type', 'application/json');
+    headers.append('responseType', 'text');
+
+    const httpOptions = {
+      headers:headers
+    }
+    return this.http.post<Sistema[]>(`${URL_API}/sistemas`, sistema,httpOptions);
+  }
+  //-----------------------------------------------------------------------------------------
   getTarefas(){
     return this.http.get<Tarefa[]>(`${URL_API}/tarefas`);
   }

@@ -15,6 +15,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TarefaComponent } from './components/dashboard/tarefa/tarefa.component';
 import { NotifierModule,NotifierOptions } from "angular-notifier";
 import {NgxPaginationModule} from 'ngx-pagination';
+import { SistemaComponent } from './components/dashboard/sistema/sistema.component';
+
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -66,7 +68,8 @@ const customNotifierOptions: NotifierOptions = {
     SettingsComponent,
     MenuComponent,
     DashboardComponent,
-    TarefaComponent
+    TarefaComponent,
+    SistemaComponent
   ],
   imports: [
     BrowserModule,
