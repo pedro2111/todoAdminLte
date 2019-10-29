@@ -14,6 +14,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TarefaComponent } from './components/dashboard/tarefa/tarefa.component';
 import { NotifierModule,NotifierOptions } from "angular-notifier";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -73,6 +74,7 @@ const customNotifierOptions: NotifierOptions = {
     FormsModule,
     ReactiveFormsModule,
     NotifierModule.withConfig(customNotifierOptions),
+    NgxPaginationModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [],

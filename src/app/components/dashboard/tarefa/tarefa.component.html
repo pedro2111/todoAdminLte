@@ -184,13 +184,8 @@
         <h3 class="box-title">Tarefas</h3>
 
         <div class="box-tools">
-            <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
+            <pagination-controls class="pagination pagination-sm no-margin pull-right" (pageChange)="p = $event">
+            </pagination-controls>
         </div>
     </div>
     <!-- /.box-header -->
@@ -206,15 +201,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let tarefa of Alltarefas">
+                <tr *ngFor="let tarefa of Alltarefas | paginate: {itemsPerPage: 10, currentPage: p}">
                     <th scope="row">{{tarefa.id}}</th>
                     <td>{{tarefa.nome}}</td>
                     <td>{{tarefa.descricao}}</td>
                     <td *ngIf="tarefa.status === 1"><span class="badge bg-green">Concluído</span></td>
                     <td *ngIf="tarefa.status === 0"><span class="badge bg-red">Em andamento</span></td>
-                    
                     <td>{{tarefa.created_at | date: 'dd/MM/yyyy'}}</td>
                 </tr>
+
             </tbody>
         </table>
     </div>
