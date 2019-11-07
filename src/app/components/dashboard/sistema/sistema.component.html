@@ -10,13 +10,13 @@
                     <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Cadastrar Sistema</h4>
             </div>
-            <form novalidate [formGroup] = "formulario" (submit)="addSistema()" >
+            <form novalidate [formGroup] = "formulario"  >
                 <div class="modal-body">
                     <input type="text" formControlName="nome" style="width: 100%; color: black;">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
-                    <button [routerLink]="['/']" type="submit" [disabled]="!formulario.valid" class="btn btn-outline">Salvar</button>
+                    <button [routerLink]="['/dashboard']" type="button" (click)="addSistema()" [disabled]="!formulario.valid" class="btn btn-outline">Salvar</button>
                 </div>
             </form>
         </div>

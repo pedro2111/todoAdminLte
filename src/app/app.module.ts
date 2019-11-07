@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 
 
@@ -16,6 +16,10 @@ import { TarefaComponent } from './components/dashboard/tarefa/tarefa.component'
 import { NotifierModule,NotifierOptions } from "angular-notifier";
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SistemaComponent } from './components/dashboard/sistema/sistema.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -69,7 +73,9 @@ const customNotifierOptions: NotifierOptions = {
     MenuComponent,
     DashboardComponent,
     TarefaComponent,
-    SistemaComponent
+    SistemaComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,11 @@ const customNotifierOptions: NotifierOptions = {
     NgxPaginationModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [AuthGuard, {
+    provide:HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
