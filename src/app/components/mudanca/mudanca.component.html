@@ -1,0 +1,90 @@
+<div class="col-md-10 col-md-offset-1">
+    <div class="box box-warning box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Filtrar</h3>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <form novalidate [formGroup]="formulario" (submit)="pesquisar()">
+                    <div class="col-xs-3">
+                        <input type="text" formControlName="matricula" class="form-control sem-borda"
+                            placeholder="Matricula">
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="text" formControlName="mudanca" class="form-control sem-borda"
+                            placeholder="CRQ">
+                    </div>
+                    <div class="col-xs-4">
+                        <select class="form-control select2 sem-borda" formControlName="status" style="width: 100%;">
+                            <option value="null"></option>
+                            <option value="Assigned">Designado</option>
+                            <option value="Pending">Pendente</option>
+                            <option value="Waiting Approval">Aguardando Aprovação</option>
+                            <option value="Planning">Planejamento</option>
+                            <option value="In Progress">Em andamento</option>
+                            <option value="Completed">Concluído</option>
+                            <option value="Rejected">Rejeitado</option>
+                            <option value="Cancelled">Cancelado</option>
+                            <option value="Closed">Fechado</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-1">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="teste" class="table table-bordered table-striped" datatable [dtOptions]="dtOptions"
+                    [dtTrigger]="dtTrigger">
+                    <thead>
+                        <tr>
+                            <th>Solicitante</th>
+                            <th>Sumario</th>
+                            <th>Descrição</th>
+                            <th>status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let req of mudanca">
+                            <td>{{req['values']['Requestor ID']}}</td>
+                            <td>{{req['values'].Summary}}</td>
+                            <td>{{req['values']['WO Type Field 01']}}</td>
+                            <td>{{req['values'].GSC_StatusTraduzido}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Solicitante</th>
+                            <th>Sumario</th>
+                            <th>Descrição</th>
+                            <th>status</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>

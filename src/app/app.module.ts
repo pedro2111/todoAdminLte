@@ -20,6 +20,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { RequisicaoComponent } from './components/requisicao/requisicao.component';
+import { MudancaComponent } from './components/mudanca/mudanca.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 const customNotifierOptions: NotifierOptions = {
@@ -75,7 +78,9 @@ const customNotifierOptions: NotifierOptions = {
     TarefaComponent,
     SistemaComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    RequisicaoComponent,
+    MudancaComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +89,7 @@ const customNotifierOptions: NotifierOptions = {
     ReactiveFormsModule,
     NotifierModule.withConfig(customNotifierOptions),
     NgxPaginationModule,
+    DataTablesModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [AuthGuard, {

@@ -1,0 +1,15 @@
+.btn-app {
+    margin-right: 8px;
+}
+.sem-borda{
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    
+}
+.no-data-available {
+    text-align: center;
+  }
+  .dataTables_empty {
+    display: none;
+  }
